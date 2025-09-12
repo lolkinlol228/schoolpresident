@@ -1,4 +1,4 @@
-// Enhanced Translation data with new features
+
 const translations = {
   ru: {
     "hero.title": "Цели",
@@ -119,7 +119,6 @@ const translations = {
   }
 };
 
-// Application state
 let currentLanguage = 'ru';
 let currentSlide = 0;
 let sliderInterval;
@@ -127,7 +126,7 @@ let supportCountAnimated = false;
 let progressAnimated = false;
 let statsAnimated = false;
 
-// Data for testimonials and support
+
 const testimonialsData = [
   {
     name: "Анна Смирнова",
@@ -155,7 +154,7 @@ const testimonialsData = [
   }
 ];
 
-// Wait for DOM to be fully loaded
+
 document.addEventListener('DOMContentLoaded', function() {
   initApp();
 });
@@ -175,16 +174,16 @@ function initApp() {
   setupEnhancedHoverEffects();
   changeLanguage('ru');
   
-  // Start testimonials auto-play
+
   startSliderAutoplay();
 }
 
-// Enhanced hover effects for program cards
+
 function setupEnhancedHoverEffects() {
   const programCards = document.querySelectorAll('.program-card');
   const statCards = document.querySelectorAll('.stat-card');
   
-  // Program cards hover effects
+
   programCards.forEach(card => {
     card.addEventListener('mouseenter', function() {
       this.style.transform = 'translateY(-15px) scale(1.05) rotateY(5deg)';
@@ -212,8 +211,7 @@ function setupEnhancedHoverEffects() {
       }
     });
   });
-  
-  // Stat cards hover effects
+
   statCards.forEach(card => {
     card.addEventListener('mouseenter', function() {
       this.style.transform = 'translateY(-10px) scale(1.03)';
@@ -227,7 +225,7 @@ function setupEnhancedHoverEffects() {
   });
 }
 
-// Language functionality
+
 function setupLanguageButtons() {
   const buttons = document.querySelectorAll('.lang-btn');
   buttons.forEach(button => {
@@ -235,7 +233,7 @@ function setupLanguageButtons() {
       const lang = this.getAttribute('data-lang');
       changeLanguage(lang);
       
-      // Update active state with animation
+
       buttons.forEach(btn => btn.classList.remove('active'));
       this.classList.add('active');
     });
@@ -254,16 +252,15 @@ function changeLanguage(lang) {
     }
   });
   
-  // Update testimonials content based on language
+
   updateTestimonialsLanguage(lang);
 }
 
 function updateTestimonialsLanguage(lang) {
-  // For now, keeping testimonials in Russian as they are user quotes
-  // In a real app, you'd have translations for these as well
+
 }
 
-// Scroll functionality
+
 function setupScrollButton() {
   const scrollBtn = document.querySelector('.scroll-btn');
   if (scrollBtn) {
@@ -294,7 +291,7 @@ function setupContactButtons() {
   }
 }
 
-// Enhanced Parallax effect
+
 function setupParallaxEffect() {
   window.addEventListener('scroll', function() {
     const scrolled = window.pageYOffset;
@@ -306,7 +303,7 @@ function setupParallaxEffect() {
       layer.style.transform = `translate3d(0, ${yPos}px, 0)`;
     });
     
-    // Additional parallax effects for sections
+   
     const hero = document.querySelector('.hero');
     const heroOffset = hero.offsetTop;
     const heroHeight = hero.offsetHeight;
@@ -315,7 +312,7 @@ function setupParallaxEffect() {
       hero.style.backgroundPositionY = `${scrolled * 0.5}px`;
     }
     
-    // Show/hide social sidebar based on scroll
+    
     const socialSidebar = document.querySelector('.social-sidebar');
     if (scrolled > 300) {
       socialSidebar.classList.add('visible');
@@ -325,7 +322,7 @@ function setupParallaxEffect() {
   });
 }
 
-// Scroll animations with Intersection Observer
+
 function setupScrollAnimations() {
   const observerOptions = {
     threshold: 0.2,
@@ -337,13 +334,13 @@ function setupScrollAnimations() {
       if (entry.isIntersecting) {
         entry.target.classList.add('animated');
         
-        // Animate statistics counters when stats section comes into view
+ 
         if (entry.target.classList.contains('stats-section') && !statsAnimated) {
           setTimeout(() => animateStatCounters(), 300);
           statsAnimated = true;
         }
         
-        // Animate support progress when support section comes into view
+      
         if (entry.target.classList.contains('support-section') && !progressAnimated) {
           setTimeout(() => animateSupportProgress(), 500);
           progressAnimated = true;
@@ -352,20 +349,20 @@ function setupScrollAnimations() {
     });
   }, observerOptions);
   
-  // Observe all elements with animate-on-scroll class
+
   document.querySelectorAll('.animate-on-scroll').forEach(el => {
     observer.observe(el);
   });
 }
 
-// Enhanced statistics counters animation
+
 function animateStatCounters() {
   const counters = document.querySelectorAll('.stat-number');
   
   counters.forEach((counter, index) => {
     const target = parseInt(counter.getAttribute('data-count'));
     const duration = 2000;
-    const startDelay = index * 200; // Stagger animation
+    const startDelay = index * 200; 
     
     setTimeout(() => {
       let current = 0;
@@ -376,8 +373,7 @@ function animateStatCounters() {
         if (current >= target) {
           current = target;
           clearInterval(timer);
-          
-          // Add celebration effect when counter reaches target
+        
           counter.style.transform = 'scale(1.1)';
           setTimeout(() => {
             counter.style.transform = 'scale(1)';
@@ -389,7 +385,7 @@ function animateStatCounters() {
   });
 }
 
-// Testimonials slider
+
 function setupTestimonialsSlider() {
   const dots = document.querySelectorAll('.dot');
   
@@ -405,17 +401,16 @@ function showSlide(index) {
   const cards = document.querySelectorAll('.testimonial-card');
   const dots = document.querySelectorAll('.dot');
   
-  // Hide all cards
+
   cards.forEach(card => {
     card.classList.remove('active');
   });
   
-  // Remove active from all dots
+
   dots.forEach(dot => {
     dot.classList.remove('active');
   });
-  
-  // Show current slide
+
   if (cards[index]) {
     cards[index].classList.add('active');
     dots[index].classList.add('active');
@@ -439,7 +434,7 @@ function resetSliderAutoplay() {
   startSliderAutoplay();
 }
 
-// Enhanced social sharing functionality
+
 function setupSocialSharing() {
   const socialButtons = document.querySelectorAll('.social-btn');
   
@@ -448,7 +443,7 @@ function setupSocialSharing() {
       const platform = this.getAttribute('data-platform');
       const shareCount = this.querySelector('.share-count');
       
-      // Enhanced animation
+
       this.style.transform = 'translateY(-6px) scale(1.15) rotate(5deg)';
       this.style.boxShadow = '0 15px 30px rgba(86, 28, 36, 0.3)';
       
@@ -456,12 +451,10 @@ function setupSocialSharing() {
         this.style.transform = '';
         this.style.boxShadow = '';
       }, 300);
-      
-      // Increment share count with animation
       const currentCount = parseInt(shareCount.textContent);
       animateCounterToValue(shareCount, currentCount, currentCount + 1);
       
-      // Show sharing notification
+
       showSharingNotification(platform);
     });
   });
@@ -477,18 +470,17 @@ function showSharingNotification(platform) {
   showNotification(messages[currentLanguage], 'success');
 }
 
-// Support counter functionality
+
 function setupSupportCounter() {
   const counter = document.getElementById('supportCounter');
   let currentCount = 247;
   
-  // Simulate real-time updates
   setInterval(() => {
     if (Math.random() < 0.3) {
       currentCount += Math.floor(Math.random() * 3) + 1;
       animateCounterToValue(counter, parseInt(counter.textContent), currentCount);
       
-      // Check for milestones
+
       if (currentCount % 50 === 0) {
         showMilestoneCelebration();
       }
@@ -545,7 +537,7 @@ function showMilestoneCelebration() {
   }, 3000);
 }
 
-// Feedback modal functionality
+
 function setupFeedbackModal() {
   const feedbackBtn = document.getElementById('feedbackBtn');
   const modal = document.getElementById('feedbackModal');
@@ -553,13 +545,13 @@ function setupFeedbackModal() {
   const overlay = modal.querySelector('.modal-overlay');
   const form = document.getElementById('feedbackForm');
   
-  // Open modal
+  
   feedbackBtn.addEventListener('click', () => {
     modal.classList.remove('hidden');
     setTimeout(() => modal.classList.add('visible'), 10);
   });
   
-  // Close modal
+
   const closeModal = () => {
     modal.classList.remove('visible');
     setTimeout(() => modal.classList.add('hidden'), 300);
@@ -569,7 +561,7 @@ function setupFeedbackModal() {
   closeBtn.addEventListener('click', closeModal);
   overlay.addEventListener('click', closeModal);
   
-  // Handle form submission
+
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -580,8 +572,7 @@ function setupFeedbackModal() {
       }, 2000);
     }
   });
-  
-  // ESC key to close modal
+
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && modal.classList.contains('visible')) {
       closeModal();
@@ -620,12 +611,12 @@ function resetForm() {
   successMessage.classList.add('hidden');
 }
 
-// Video player functionality
+
 function setupVideoPlayer() {
   const videoPlaceholder = document.querySelector('.video-placeholder');
   
   videoPlaceholder.addEventListener('click', function() {
-    // Enhanced video click effect
+ 
     this.style.transform = 'scale(0.95)';
     setTimeout(() => {
       this.style.transform = 'scale(1.02)';
@@ -638,7 +629,7 @@ function setupVideoPlayer() {
   });
 }
 
-// Navigation scroll effect
+
 function setupNavScrollEffect() {
   window.addEventListener('scroll', function() {
     const nav = document.querySelector('.nav');
@@ -652,7 +643,7 @@ function setupNavScrollEffect() {
   });
 }
 
-// Enhanced notification system
+
 function showNotification(message, type = 'success') {
   const notification = document.createElement('div');
   notification.textContent = message;
@@ -708,9 +699,9 @@ function showSupportNotification() {
   showNotification(messages[currentLanguage], 'success');
 }
 
-// Keyboard shortcuts for enhanced accessibility
+
 document.addEventListener('keydown', function(e) {
-  // Language switching
+
   if (e.key === '1') {
     changeLanguage('ru');
     updateActiveButton('ru');
@@ -722,7 +713,7 @@ document.addEventListener('keydown', function(e) {
     updateActiveButton('en');
   }
   
-  // Testimonials navigation
+ 
   if (e.key === 'ArrowLeft') {
     const prevIndex = currentSlide > 0 ? currentSlide - 1 : testimonialsData.length - 1;
     showSlide(prevIndex);
@@ -743,14 +734,14 @@ function updateActiveButton(lang) {
   });
 }
 
-// Reduced motion support
+
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 if (prefersReducedMotion.matches) {
-  // Disable auto-play for users who prefer reduced motion
+
   clearInterval(sliderInterval);
   
-  // Reduce animation durations
+
   document.documentElement.style.setProperty('--duration-fast', '50ms');
   document.documentElement.style.setProperty('--duration-normal', '100ms');
 }
@@ -771,7 +762,7 @@ if (prefersReducedMotion.matches) {
             });
         });
 
-        // Responsive adjustments
+   
         function handleResize() {
             const galleryGrid = document.querySelector('[style*="grid-template-columns"]');
             if (window.innerWidth <= 768) {
@@ -784,4 +775,4 @@ if (prefersReducedMotion.matches) {
         }
 
         window.addEventListener('resize', handleResize);
-        handleResize(); // Initial call
+        handleResize(); 
